@@ -1,0 +1,15 @@
+{
+  "mcpServers": {
+    "shadcn": {
+      "command": "npx",
+      "args": [
+        "shadcn@latest",
+        "mcp"
+      ]
+    },
+    "lottiefiles": {
+      "command": "npx",
+      "args": ["-y", "mcp-server-lottiefiles"]
+    }
+  }
+}

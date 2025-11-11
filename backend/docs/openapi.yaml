@@ -1,0 +1,6 @@
+openapi: 3.1.0
+info:
+  title: API Placeholder
+  version: 0.1.0
+  description: Spécification OpenAPI de l'API backend (à compléter)
+paths: {}

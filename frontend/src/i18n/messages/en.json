@@ -1,0 +1,249 @@
+{
+  "header": {
+    "welcome": "Hello, {name}!",
+    "subtitle": "Explore information and activity about your AI Studio",
+    "search": "Search...",
+    "theme": "Toggle theme",
+    "language": "Toggle language",
+    "notifications": "Notifications"
+  },
+  "login": {
+    "title": "AI STUDIO",
+    "subtitle": "Your intelligent assistant for content creation and data analysis",
+    "email": "Email address",
+    "emailPlaceholder": "your@email.com",
+    "password": "Password",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Forgot password?",
+    "signIn": "SIGN IN",
+    "signInSSO": "SIGN IN WITH SSO"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "documents": "Documents",
+    "testing": "Testing",
+    "userStory": "User Story",
+    "history": "History",
+    "analytics": "Analytics",
+    "team": "Team",
+    "settings": "Settings",
+    "help": "Help",
+    "profile": "Profile"
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "documentsGenerated": "Documents Generated",
+    "averageTime": "Average Time",
+    "successRate": "Success Rate",
+    "aiPerformance": "AI Performance",
+    "recentActivities": "Recent Activities",
+    "today": "Today",
+    "activityHistory": "Activity history",
+    "viewAll": "View all activities",
+    "metrics": {
+      "quickActions": {
+        "title": "Quick Actions",
+        "createUS": "Create User Story",
+        "generateTests": "Generate Tests",
+        "generateDocument": "Generate Document",
+        "analyzeSprint": "Analyze Sprint"
+      },
+      "aiActivity": {
+        "title": "AI Activity",
+        "actionsToday": "actions today",
+        "thisWeek": "This week",
+        "trending": "Trending",
+        "mostUsed": "Most used"
+      },
+      "timeSaved": {
+        "title": "Time Saved",
+        "thisMonth": "This month",
+        "hours": "hours",
+        "days": "days saved",
+        "vsLastMonth": "vs last month"
+      },
+      "services": {
+        "title": "Connected Services",
+        "azureDevOps": "Azure DevOps",
+        "sharePoint": "SharePoint",
+        "playwright": "Playwright MCP",
+        "online": "Online",
+        "offline": "Offline",
+        "lastSync": "Last sync",
+        "latency": "latency"
+      },
+      "chat": {
+        "title": "AI Assistant",
+        "subtitle": "Powered by Claude Sonnet 4.5",
+        "placeholder": "Ask me anything...",
+        "emptyState": "Start a conversation with your AI assistant",
+        "mockResponse": "I'm your AI assistant. I can help you create user stories, generate tests, analyze sprints and much more. How can I help you today?",
+        "quickActions": {
+          "createUS": "Create a User Story",
+          "generateTests": "Generate automated tests",
+          "postMEP": "Generate post-MEP report",
+          "analyzeSprint": "Analyze current sprint"
+        }
+      },
+      "activity": {
+        "title": "Recent Activity",
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "older": "Older",
+        "justNow": "Just now"
+      }
+    }
+  },
+  "documents": {
+    "title": "Documents",
+    "search": "Search...",
+    "new": "New",
+    "create": "Create a document",
+    "empty": "No documents found",
+    "emptySearch": "No results for \"{query}\"",
+    "newBadge": "New",
+    "sort": {
+      "label": "Sort by",
+      "dateDesc": "Newest first",
+      "dateAsc": "Oldest first",
+      "titleAsc": "Title (A-Z)",
+      "titleDesc": "Title (Z-A)"
+    },
+    "tabs": {
+      "all": "All",
+      "crMep": "CR MEP",
+      "postMep": "Post-MEP",
+      "sprintReview": "Sprint Review",
+      "presentations": "Presentations"
+    },
+    "types": {
+      "crMep": "CR Production Deployment",
+      "postMep": "CR Post-MEP",
+      "sprintReview": "Sprint Review",
+      "presentation": "Presentation"
+    },
+    "columns": {
+      "type": "Type",
+      "title": "Title",
+      "actions": "Actions",
+      "createdBy": "Created by",
+      "date": "Date"
+    },
+    "actions": {
+      "view": "View",
+      "edit": "Edit",
+      "download": "Download",
+      "delete": "Delete"
+    },
+    "deleteModal": {
+      "title": "Delete document",
+      "message": "Are you sure you want to delete the document"
+    },
+    "notifications": {
+      "created": "Document created successfully",
+      "deleted": "Document deleted successfully",
+      "downloaded": "Document downloaded successfully",
+      "error": "An error occurred"
+    }
+  },
+  "report": {
+    "title": "New MEP Report",
+    "unsavedChanges": "Unsaved changes",
+    "preview": "Preview",
+    "save": "Save",
+    "export": "Export",
+    "share": "Share",
+    "edit": "Edit",
+    "editMode": "Edit Mode",
+    "exportPDF": "Export as PDF",
+    "exportHTML": "Export as HTML",
+    "structure": "Report Structure",
+    "sectionsCount": "{count} sections",
+    "allSections": "All sections",
+    "sections": {
+      "hero": "Header",
+      "synthese": "Summary",
+      "bilan": "Delivery Report",
+      "metriques": "Quality Metrics",
+      "defauts": "Defects Analysis",
+      "userStories": "User Stories",
+      "planTest": "Test Plan",
+      "validationBusiness": "Business Validation",
+      "bilanRecommandations": "Report & Recommendations",
+      "conclusion": "Conclusion"
+    },
+    "previewSection": {
+      "title": "Preview",
+      "selectSection": "Select a section",
+      "selectSectionDesc": "Use the left navigator to browse through the report",
+      "inDevelopment": "Section under development",
+      "inDevelopmentDesc": "Content for this section will be available soon"
+    },
+    "ai": {
+      "title": "AI Assistant",
+      "description": "Ask AI to fill or modify the report",
+      "quickActions": "Quick actions",
+      "placeholder": "Ask something to AI...",
+      "emptyState": "Ask a question or use a quick action",
+      "actions": {
+        "fillFromAzure": "Auto-fill from Azure DevOps",
+        "generateConclusion": "Generate conclusion",
+        "improveBilan": "Improve report",
+        "addRecommendations": "Add recommendations"
+      }
+    },
+    "files": {
+      "title": "Files",
+      "description": "Images, documents and screenshots",
+      "dragDrop": "Drop your files here",
+      "dragDropDesc": "or click to browse",
+      "emptyState": "No files uploaded"
+    },
+    "links": {
+      "title": "Links",
+      "description": "Azure DevOps, Confluence, etc.",
+      "addLink": "Add link",
+      "emptyState": "No links added"
+    },
+    "content": {
+      "hero": {
+        "title": "MEP Report",
+        "package": "Package",
+        "crm": "CRM Ariane - Rothschild & Co"
+      },
+      "synthese": {
+        "title": "Delivery Summary",
+        "usCompleted": "US Completed",
+        "totalUS": "Total US",
+        "defectsResolved": "Defects Resolved",
+        "testsValidated": "Tests Validated",
+        "stories": "stories"
+      },
+      "bilan": {
+        "title": "Delivery Report",
+        "summary": "The deployment of package 12.0.7 was successfully completed. All features were deployed according to the established schedule. Validation tests confirmed the proper functioning of the application in the production environment.",
+        "positives": "Positive Points",
+        "concerns": "Points of Attention",
+        "positivesList": {
+          "deployment": "Deployment without major incidents",
+          "performance": "Performance improved by 25%",
+          "validation": "Complete business validation"
+        },
+        "concernsList": {
+          "monitoring": "Enhanced monitoring for 48h",
+          "defects": "2 minor defects being tracked",
+          "training": "User training to be scheduled"
+        }
+      }
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit"
+  }
+}

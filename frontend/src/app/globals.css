@@ -1,0 +1,224 @@
+@import "tailwindcss";
+
+/* ============================================
+   ROTHSCHILD & CO TYPOGRAPHY
+   ============================================ */
+
+/* Calluna - Primary headings, titles, highlights, quotes
+   NOTE: Calluna is a commercial font. To use it:
+   1. Place font files in public/fonts/calluna/
+   2. Uncomment the @font-face declarations below
+   3. Update the paths to match your file structure
+
+   Until then, Georgia is used as fallback (as per Rothschild guidelines)
+*/
+
+/*
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/calluna/Calluna-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/calluna/Calluna-Semibold.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Calluna';
+  src: url('/fonts/calluna/Calluna-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+*/
+
+/* Source Sans Pro - Secondary headings, body copy, figures
+   Loaded via next/font/google as Source Sans 3 (updated version)
+*/
+
+/* ============================================
+   ROTHSCHILD & CO THEME VARIABLES
+   ============================================ */
+:root {
+  /* Dark Theme (Default) */
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --text-primary: #ffffff;
+  --text-secondary: #d1d5db;
+  --text-muted: #9ca3af;
+  
+  /* Rothschild Colors */
+  --rothschild-blue: #1C355E;
+  --rothschild-gold: #CC9F53;
+  --rothschild-white: #FFFFFF;
+  --rothschild-black: #000000;
+  --rothschild-red: #8A1E41;
+  --rothschild-rose: #E8C9BA;
+  --rothschild-stone: #D6D1CA;
+  --rothschild-graphite: #4C4A47;
+  
+  /* Blue Tints */
+  --blue-80: #4A5D7E;
+  --blue-60: #77869E;
+  --blue-40: #A4AEBF;
+  --blue-20: #D2D7DF;
+  
+  /* Gold Tints */
+  --gold-80: #D7B275;
+  --gold-60: #E1C698;
+  --gold-40: #EBD9BA;
+  --gold-20: #F5ECDD;
+}
+
+[data-theme="light"] {
+  --background: #F7F6F4;
+  --foreground: #1C355E;
+  --text-primary: #1C355E;
+  --text-secondary: #4C4A47;
+  --text-muted: #77869E;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* Rothschild & Co Typography */
+  --font-calluna: Calluna, Georgia, serif;
+  --font-source-sans: var(--font-source-sans), 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-source-sans);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* TextType Component Styles */
+.text-type {
+  display: inline-block;
+  white-space: pre-wrap;
+}
+
+.text-type__cursor {
+  margin-left: 0.25rem;
+  display: inline-block;
+  opacity: 1;
+}
+
+.text-type__cursor--hidden {
+  display: none;
+}
+
+/* View Transition API for Theme Toggle */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999;
+}
+
+/* Hide scrollbar utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Modern thin scrollbar utility */
+.scrollbar-thin {
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent;
+}
+
+.scrollbar-thin:hover {
+  scrollbar-color: rgba(204, 159, 83, 0.3) transparent;
+}
+
+.scrollbar-thin::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.scrollbar-thin:hover::-webkit-scrollbar-thumb {
+  background: rgba(204, 159, 83, 0.3);
+  opacity: 1;
+}
+
+.scrollbar-thin::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 159, 83, 0.5);
+}
+
+/* Elegant scrollbar for editor - shows only on hover */
+.elegant-scrollbar {
+  scrollbar-width: thin;  /* Firefox */
+  scrollbar-color: transparent transparent;
+}
+
+.elegant-scrollbar:hover {
+  scrollbar-color: rgba(204, 159, 83, 0.4) rgba(0, 0, 0, 0.1);
+}
+
+.elegant-scrollbar::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 10px;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 10px;
+  transition: background 0.3s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.elegant-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: rgba(204, 159, 83, 0.4);
+  opacity: 1;
+}
+
+.elegant-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(204, 159, 83, 0.6);
+}
+
+/* Force button centering */
+button {
+  box-sizing: border-box !important;
+}
+
+button svg {
+  display: block;
+}

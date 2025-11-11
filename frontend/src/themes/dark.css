@@ -1,0 +1,9 @@
+/* Thème sombre shadcn/ui - tokens principaux */
+:root[data-theme="dark"] {
+  --background: #18181b;
+  --foreground: #fafafa;
+  --primary: #818cf8;
+  --primary-foreground: #18181b;
+  --border: #27272a;
+  --radius: 0.5rem;
+}

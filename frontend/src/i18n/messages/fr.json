@@ -1,0 +1,249 @@
+{
+  "header": {
+    "welcome": "Bonjour, {name} !",
+    "subtitle": "Explorez les informations et l'activité de votre AI Studio",
+    "search": "Rechercher...",
+    "theme": "Changer le thème",
+    "language": "Changer la langue",
+    "notifications": "Notifications"
+  },
+  "login": {
+    "title": "AI STUDIO",
+    "subtitle": "Votre assistant intelligent pour la création de contenu et l'analyse de données",
+    "email": "Adresse e-mail",
+    "emailPlaceholder": "votre@email.com",
+    "password": "Mot de passe",
+    "passwordPlaceholder": "••••••••",
+    "forgotPassword": "Mot de passe oublié ?",
+    "signIn": "SE CONNECTER",
+    "signInSSO": "SE CONNECTER AVEC SSO"
+  },
+  "sidebar": {
+    "dashboard": "Tableau de bord",
+    "documents": "Documents",
+    "testing": "Testing",
+    "userStory": "User Story",
+    "history": "Historique",
+    "analytics": "Analytics",
+    "team": "Équipe",
+    "settings": "Paramètres",
+    "help": "Aide",
+    "profile": "Profil"
+  },
+  "dashboard": {
+    "title": "Tableau de bord",
+    "documentsGenerated": "Documents Générés",
+    "averageTime": "Temps Moyen",
+    "successRate": "Taux de Succès",
+    "aiPerformance": "Performance IA",
+    "recentActivities": "Activités Récentes",
+    "today": "Aujourd'hui",
+    "activityHistory": "Historique des dernières actions",
+    "viewAll": "Voir toutes les activités",
+    "metrics": {
+      "quickActions": {
+        "title": "Actions Rapides",
+        "createUS": "Créer une US",
+        "generateTests": "Générer des Tests",
+        "generateDocument": "Générer un document",
+        "analyzeSprint": "Analyser le Sprint"
+      },
+      "aiActivity": {
+        "title": "Activité IA",
+        "actionsToday": "actions aujourd'hui",
+        "thisWeek": "Cette semaine",
+        "trending": "Tendance",
+        "mostUsed": "Plus utilisé"
+      },
+      "timeSaved": {
+        "title": "Temps Économisé",
+        "thisMonth": "Ce mois-ci",
+        "hours": "heures",
+        "days": "jours gagnés",
+        "vsLastMonth": "vs mois dernier"
+      },
+      "services": {
+        "title": "Services Connectés",
+        "azureDevOps": "Azure DevOps",
+        "sharePoint": "SharePoint",
+        "playwright": "Playwright MCP",
+        "online": "En ligne",
+        "offline": "Hors ligne",
+        "lastSync": "Dernière sync",
+        "latency": "latence"
+      },
+      "chat": {
+        "title": "Assistant IA",
+        "subtitle": "Propulsé par Claude Sonnet 4.5",
+        "placeholder": "Posez-moi n'importe quoi...",
+        "emptyState": "Commencez une conversation avec votre assistant IA",
+        "mockResponse": "Je suis votre assistant IA. Je peux vous aider à créer des user stories, générer des tests, analyser des sprints et bien plus encore. Comment puis-je vous aider aujourd'hui ?",
+        "quickActions": {
+          "createUS": "Créer une User Story",
+          "generateTests": "Générer des tests automatisés",
+          "postMEP": "Générer un rapport post-MEP",
+          "analyzeSprint": "Analyser le sprint en cours"
+        }
+      },
+      "activity": {
+        "title": "Activité Récente",
+        "today": "Aujourd'hui",
+        "yesterday": "Hier",
+        "older": "Plus ancien",
+        "justNow": "À l'instant"
+      }
+    }
+  },
+  "documents": {
+    "title": "Documents",
+    "search": "Rechercher...",
+    "new": "Nouveau",
+    "create": "Créer un document",
+    "empty": "Aucun document trouvé",
+    "emptySearch": "Aucun résultat pour \"{query}\"",
+    "newBadge": "Nouveau",
+    "sort": {
+      "label": "Trier par",
+      "dateDesc": "Plus récent",
+      "dateAsc": "Plus ancien",
+      "titleAsc": "Titre (A-Z)",
+      "titleDesc": "Titre (Z-A)"
+    },
+    "tabs": {
+      "all": "Tous",
+      "crMep": "CR MEP",
+      "postMep": "Post-MEP",
+      "sprintReview": "Sprint Review",
+      "presentations": "Présentations"
+    },
+    "types": {
+      "crMep": "CR Mise en Production",
+      "postMep": "CR Post-MEP",
+      "sprintReview": "Sprint Review",
+      "presentation": "Présentation"
+    },
+    "columns": {
+      "type": "Type",
+      "title": "Titre",
+      "actions": "Actions",
+      "createdBy": "Créé par",
+      "date": "Date"
+    },
+    "actions": {
+      "view": "Voir",
+      "edit": "Modifier",
+      "download": "Télécharger",
+      "delete": "Supprimer"
+    },
+    "deleteModal": {
+      "title": "Supprimer le document",
+      "message": "Êtes-vous sûr de vouloir supprimer le document"
+    },
+    "notifications": {
+      "created": "Document créé avec succès",
+      "deleted": "Document supprimé avec succès",
+      "downloaded": "Document téléchargé avec succès",
+      "error": "Une erreur s'est produite"
+    }
+  },
+  "report": {
+    "title": "Nouveau CR MEP",
+    "unsavedChanges": "Modifications non enregistrées",
+    "preview": "Aperçu",
+    "save": "Enregistrer",
+    "export": "Exporter",
+    "share": "Partager",
+    "edit": "Éditer",
+    "editMode": "Mode Édition",
+    "exportPDF": "Exporter en PDF",
+    "exportHTML": "Exporter en HTML",
+    "structure": "Structure du Rapport",
+    "sectionsCount": "{count} sections",
+    "allSections": "Toutes les sections",
+    "sections": {
+      "hero": "En-tête",
+      "synthese": "Synthèse",
+      "bilan": "Bilan Livraison",
+      "metriques": "Métriques Qualité",
+      "defauts": "Analyse Défauts",
+      "userStories": "User Stories",
+      "planTest": "Plan de Test",
+      "validationBusiness": "Validation Business",
+      "bilanRecommandations": "Bilan & Recommandations",
+      "conclusion": "Conclusion"
+    },
+    "previewSection": {
+      "title": "Prévisualisation",
+      "selectSection": "Sélectionnez une section",
+      "selectSectionDesc": "Utilisez le navigateur à gauche pour naviguer dans le rapport",
+      "inDevelopment": "Section en cours de développement",
+      "inDevelopmentDesc": "Le contenu de cette section sera bientôt disponible"
+    },
+    "ai": {
+      "title": "Assistant IA",
+      "description": "Demandez à l'IA de remplir ou modifier le rapport",
+      "quickActions": "Actions rapides",
+      "placeholder": "Demandez quelque chose à l'IA...",
+      "emptyState": "Posez une question ou utilisez une action rapide",
+      "actions": {
+        "fillFromAzure": "Remplir automatiquement depuis Azure DevOps",
+        "generateConclusion": "Générer la conclusion",
+        "improveBilan": "Améliorer le bilan",
+        "addRecommendations": "Ajouter des recommandations"
+      }
+    },
+    "files": {
+      "title": "Fichiers",
+      "description": "Images, documents et captures d'écran",
+      "dragDrop": "Glissez vos fichiers ici",
+      "dragDropDesc": "ou cliquez pour parcourir",
+      "emptyState": "Aucun fichier uploadé"
+    },
+    "links": {
+      "title": "Liens",
+      "description": "Azure DevOps, Confluence, etc.",
+      "addLink": "Ajouter un lien",
+      "emptyState": "Aucun lien ajouté"
+    },
+    "content": {
+      "hero": {
+        "title": "Compte Rendu MEP",
+        "package": "Package",
+        "crm": "CRM Ariane - Rothschild & Co"
+      },
+      "synthese": {
+        "title": "Synthèse de la Livraison",
+        "usCompleted": "US Complétées",
+        "totalUS": "Total US",
+        "defectsResolved": "Défauts Résolus",
+        "testsValidated": "Tests Validés",
+        "stories": "stories"
+      },
+      "bilan": {
+        "title": "Bilan de la Livraison",
+        "summary": "La mise en production du package 12.0.7 s'est déroulée avec succès. L'ensemble des fonctionnalités a été déployé conformément au planning établi. Les tests de validation ont confirmé le bon fonctionnement de l'application en environnement de production.",
+        "positives": "Points Positifs",
+        "concerns": "Points d'Attention",
+        "positivesList": {
+          "deployment": "Déploiement sans incident majeur",
+          "performance": "Performance améliorée de 25%",
+          "validation": "Validation métier complète"
+        },
+        "concernsList": {
+          "monitoring": "Surveillance renforcée 48h",
+          "defects": "2 défauts mineurs en suivi",
+          "training": "Formation utilisateurs à planifier"
+        }
+      }
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "confirm": "Confirmer",
+    "delete": "Supprimer",
+    "edit": "Modifier"
+  }
+}

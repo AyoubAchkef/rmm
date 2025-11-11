@@ -1,0 +1,9 @@
+/* Thème clair shadcn/ui - tokens principaux */
+:root {
+  --background: #fff;
+  --foreground: #111;
+  --primary: #6366f1;
+  --primary-foreground: #fff;
+  --border: #e5e7eb;
+  --radius: 0.5rem;
+}
