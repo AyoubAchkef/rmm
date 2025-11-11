@@ -32,7 +32,37 @@ Application fullstack moderne pour la gestion des rapports de Compte Rendu de Mi
 - ✅ **Versioning** automatique
 - ✅ **Changelog** détaillé
 
-## 🛠️ Installation
+## 🛠️ Installation rapide
+
+### 🚀 Démarrage en 2 commandes
+
+**Étape 1 - Installation :**
+
+```bash
+# Windows
+install.bat
+
+# Linux/Mac
+./install.sh
+```
+
+**Étape 2 - Démarrage :**
+
+```bash
+# Windows
+start.bat
+
+# Linux/Mac
+./start.sh
+```
+
+Ouvrez votre navigateur sur **http://localhost:3000**
+
+📖 Pour plus de détails, consultez le [Guide d'installation complet](INSTALLATION.md).
+
+---
+
+## 📦 Installation manuelle
 
 ### Prérequis
 - Node.js 18+
@@ -41,27 +71,27 @@ Application fullstack moderne pour la gestion des rapports de Compte Rendu de Mi
 
 ### Backend
 
-\`\`\`bash
+```bash
 cd backend/src/CRMEPReport.API
 dotnet restore
 dotnet run
-\`\`\`
+```
 
 Le backend sera disponible sur `http://localhost:5154`
 
 ### Frontend
 
-\`\`\`bash
+```bash
 cd frontend
 npm install
 npm run dev
-\`\`\`
+```
 
 Le frontend sera disponible sur `http://localhost:3000` (ou 3001 si 3000 est occupé)
 
 ## 📁 Structure du projet
 
-\`\`\`
+```
 rmm/
 ├── backend/
 │   ├── src/
@@ -79,8 +109,11 @@ rmm/
 │   │   ├── contexts/
 │   │   └── i18n/
 │   └── public/
+├── install.bat / install.sh
+├── start.bat / start.sh
+├── stop.bat / stop.sh
 └── Rapports/ (généré automatiquement)
-\`\`\`
+```
 
 ## 🎯 Utilisation
 
@@ -111,19 +144,19 @@ rmm/
 
 Créez un fichier `.env.local` dans le dossier `frontend/` :
 
-\`\`\`env
+```env
 NEXT_PUBLIC_API_URL=http://localhost:5154
-\`\`\`
+```
 
 ### Configuration (Backend)
 
 Modifiez `appsettings.json` si nécessaire :
 
-\`\`\`json
+```json
 {
   "ReportsPath": "../../../Rapports"
 }
-\`\`\`
+```
 
 ## 📝 API Endpoints
 
@@ -149,21 +182,21 @@ L'application utilise un design moderne avec :
 
 ### Scripts disponibles (Frontend)
 
-\`\`\`bash
+```bash
 npm run dev      # Démarre le serveur de développement
 npm run build    # Compile pour la production
 npm run start    # Démarre le serveur de production
 npm run lint     # Analyse le code
-\`\`\`
+```
 
 ### Scripts disponibles (Backend)
 
-\`\`\`bash
+```bash
 dotnet run              # Démarre l'application
 dotnet build            # Compile le projet
 dotnet test             # Lance les tests
 dotnet ef migrations    # Gère les migrations
-\`\`\`
+```
 
 ## 📦 Architecture
 
@@ -171,7 +204,7 @@ dotnet ef migrations    # Gère les migrations
 
 Les rapports sont stockés dans une structure de dossiers :
 
-\`\`\`
+```
 Rapports/
 └── {année}/
     └── Sprint_{sprint}/
@@ -182,7 +215,7 @@ Rapports/
             ├── changelog.jsonl
             └── versions/
                 └── data_v{version}_{timestamp}.json
-\`\`\`
+```
 
 ## 🤝 Contribution
 

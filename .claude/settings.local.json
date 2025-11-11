@@ -59,7 +59,11 @@
       "Bash(git init:*)",
       "Bash(git remote add:*)",
       "Bash(git add:*)",
-      "Bash(git reset:*)"
+      "Bash(git reset:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: RMM - Report Management Module\n\nApplication fullstack pour la gestion des rapports CR MEP\n- Frontend: Next.js 16 avec Turbopack\n- Backend: .NET 8 API\n- Système de stockage basé sur fichiers\n- Interface utilisateur moderne avec glassmorphism\n- Support multilingue (FR/EN)\n- Gestion complète des rapports (CRUD)\n- Prévisualisation et export HTML/PDF\n- Thème sombre/clair\n\n🤖 Generated with Claude Code (https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git push:*)",
+      "Bash(git commit:*)",
+      "Bash(.gitignore)"
     ],
     "deny": [],
     "ask": []

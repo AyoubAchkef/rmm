@@ -52,3 +52,6 @@ yarn-error.log*
 node_modules/
 package-lock.json
 package.json
+
+# Scripts PIDs
+.rmm_pids
