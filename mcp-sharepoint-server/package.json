@@ -1,0 +1,33 @@
+{
+  "name": "rmm-mcp-sharepoint-server",
+  "version": "1.0.0",
+  "description": "MCP Server for SharePoint integration with RMM - Microsoft Graph API Bridge",
+  "main": "src/index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js",
+    "test": "echo \"No tests yet\" && exit 0"
+  },
+  "keywords": [
+    "mcp",
+    "sharepoint",
+    "microsoft-graph",
+    "model-context-protocol"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "@azure/identity": "^4.0.1",
+    "express": "^4.21.2",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

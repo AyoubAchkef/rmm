@@ -34,7 +34,15 @@ echo [ERREUR] Le fichier mcp-server\.env est manquant. Renseignez-le avant de de
 echo   - c:\Dev\rmm\mcp-server\.env
 echo   - Variables: AZURE_DEVOPS_ORG_URL, AZURE_DEVOPS_PAT, AZURE_DEVOPS_PROJECT
 ) else (
-start "RMM MCP" cmd /k "cd /d %~dp0mcp-server && npm start"
+start "RMM MCP Azure DevOps" cmd /k "cd /d %~dp0mcp-server && npm start"
+)
+
+:: Demarrer le MCP SharePoint Server en arriere-plan
+if not exist "%~dp0mcp-sharepoint-server\.env" (
+echo [ATTENTION] Le fichier mcp-sharepoint-server\.env est manquant.
+echo Le serveur SharePoint ne demarrera pas.
+) else (
+start "RMM MCP SharePoint" cmd /k "cd /d %~dp0mcp-sharepoint-server && npm start"
 )
 
 :: Demarrer le backend en arriere-plan avec dotnet sur la DLL (evite les problemes d'antivirus)
@@ -51,15 +59,17 @@ echo ====================================
 echo Les serveurs sont en cours de demarrage...
 echo ====================================
 echo.
-echo Trois fenetres se sont ouvertes :
-echo - RMM MCP (Azure DevOps)
+echo Quatre fenetres se sont ouvertes :
+echo - RMM MCP Azure DevOps (Node.js)
+echo - RMM MCP SharePoint (Node.js)
 echo - RMM Backend (API .NET)
 echo - RMM Frontend (Next.js)
 echo.
 echo URLs utiles :
-echo - MCP Health:     http://localhost:3001/health
-echo - API Swagger:    http://localhost:5154/swagger
-echo - Frontend:       http://localhost:3000
+echo - MCP Azure DevOps:  http://localhost:3001/health
+echo - MCP SharePoint:    http://localhost:3002/health
+echo - API Swagger:       http://localhost:5154/swagger
+echo - Frontend:          http://localhost:3000
 echo.
 echo Pour arreter les serveurs, fermez les fenetres Backend et Frontend
 echo ou utilisez stop.bat

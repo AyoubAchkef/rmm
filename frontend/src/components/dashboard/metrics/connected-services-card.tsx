@@ -7,6 +7,7 @@ import { LottieIcon } from './lottie-icon';
 import { SIMPLE_ANIMATIONS } from './lottie-animations';
 import Image from 'next/image';
 import { useAzureDevOpsStatus } from '@/hooks/useAzureDevOpsStatus';
+import { useSharePointStatus } from '@/hooks/useSharePointStatus';
 
 interface Service {
   logo: string;
@@ -14,12 +15,14 @@ interface Service {
   status: 'online' | 'offline' | 'loading';
   latency?: number;
   lastSync?: string;
+  isMockMode?: boolean;
 }
 
 export function ConnectedServicesCard() {
   const { theme } = useTheme();
   const { t } = useLanguage();
   const azureDevOpsStatus = useAzureDevOpsStatus();
+  const sharePointStatus = useSharePointStatus();
 
   const services: Service[] = [
     {
@@ -35,8 +38,13 @@ export function ConnectedServicesCard() {
     {
       logo: '/sharepoint_logo.png',
       nameKey: 'sharePoint',
-      status: 'online',
-      lastSync: '2min',
+      status: sharePointStatus.isLoading 
+        ? 'loading' 
+        : sharePointStatus.isConnected 
+          ? 'online' 
+          : 'offline',
+      latency: sharePointStatus.latency ?? undefined,
+      isMockMode: sharePointStatus.isMockMode,
     },
     {
       logo: '/playwright_logo.png',
@@ -146,7 +154,7 @@ export function ConnectedServicesCard() {
                     color: theme === 'dark' ? '#CC9F53' : '#FFFFFF',
                   }}
                 >
-                  {service.latency ? `${service.latency}ms` : service.lastSync}
+                  {service.isMockMode ? 'MOCK' : service.latency ? `${service.latency}ms` : service.lastSync}
                 </div>
               )}
               {service.status === 'loading' && (
