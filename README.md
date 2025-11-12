@@ -38,9 +38,17 @@ Application fullstack moderne pour la gestion des rapports de Compte Rendu de Mi
 - **C#** - Langage de programmation
 - **Entity Framework Core 8.0.11** - ORM
 - **SQL Server** - Base de données
+- **Azure.AI.OpenAI 2.1.0** - Intégration Azure OpenAI
 - **Swashbuckle** - Documentation Swagger/OpenAPI
 - Architecture RESTful
 - Versioning automatique des rapports
+
+### MCP Server (Azure DevOps)
+- **Node.js 18+** - Runtime JavaScript
+- **Express 4.21** - Serveur web
+- **azure-devops-node-api 14.1** - Client Azure DevOps
+- **@modelcontextprotocol/sdk 1.0** - Protocol MCP
+- Récupération automatique des work items, tests, déploiements
 
 ---
 
@@ -101,9 +109,13 @@ Ce script va :
 - ✅ Vérifier que Node.js et .NET sont installés
 - ✅ Nettoyer les anciennes installations
 - ✅ Installer **635 packages npm** pour le frontend (2-5 minutes)
+- ✅ Installer le **MCP Server** (Azure DevOps)
+- ✅ Créer le fichier `.env` pour le MCP (si première installation)
 - ✅ Restaurer et compiler le backend .NET
 
-**Durée totale :** 2-5 minutes selon votre connexion internet
+**Durée totale :** 3-6 minutes selon votre connexion internet
+
+**Note :** Si c'est la première installation, vous devrez renseigner le fichier `mcp-server\.env` avec vos credentials Azure DevOps avant de démarrer.
 
 ---
 
@@ -117,20 +129,22 @@ start.bat
 ```
 
 Ce script va :
-- 🚀 Démarrer le backend sur **http://localhost:5154**
-- 🚀 Démarrer le frontend sur **http://localhost:3000**
+- 🚀 Démarrer le **MCP Server** (Azure DevOps) sur **http://localhost:3001**
+- 🚀 Démarrer le **backend** (.NET) sur **http://localhost:5154**
+- 🚀 Démarrer le **frontend** (Next.js) sur **http://localhost:3000**
 
-Deux fenêtres de terminal s'ouvriront (Backend et Frontend).
+Trois fenêtres de terminal s'ouvriront (MCP, Backend, Frontend).
 
 ### Accéder à l'Application
 
 Ouvrez votre navigateur sur :
 - **Application :** http://localhost:3000
 - **API Swagger :** http://localhost:5154/swagger
+- **MCP Health :** http://localhost:3001/health
 
 ### Arrêter l'Application
 
-**Option 1 :** Fermez les deux fenêtres de terminal (Backend et Frontend)
+**Option 1 :** Fermez les trois fenêtres de terminal (MCP, Backend, Frontend)
 
 **Option 2 :** Exécutez :
 ```bash
@@ -188,14 +202,24 @@ rmm/
 ├── backend/                     # API .NET 8
 │   ├── src/
 │   │   └── CRMEPReport.API/
-│   │       ├── Controllers/    # Contrôleurs API
-│   │       ├── Services/       # Logique métier
-│   │       ├── Models/         # Modèles de données
+│   │       ├── Controllers/    # Contrôleurs API (+ AIController)
+│   │       ├── Services/       # Logique métier (+ AI Services)
+│   ���       ├── Models/         # Modèles de données (+ AI Models)
 │   │       ├── Data/           # Contexte EF Core
 │   │       └── Migrations/     # Migrations DB
 │   └── CRMEPReport.sln         # Solution Visual Studio
 │
+├── mcp-server/                  # Serveur MCP (Azure DevOps)
+│   ├── src/
+│   │   ├── index.js            # Serveur Express
+│   │   ├── mcp/                # Serveur MCP
+│   │   └── services/           # Services Azure DevOps
+│   ├── package.json            # Dépendances Node.js
+│   ├── .env.example            # Template configuration
+│   └── .env                    # Configuration (à créer)
+│
 ├── Rapports/                    # Rapports générés (créé auto)
+├── AI_INTEGRATION.md            # Documentation IA complète
 ├── install.bat                  # Script d'installation
 ├── start.bat                    # Script de démarrage
 ├── stop.bat                     # Script d'arrêt
@@ -269,22 +293,74 @@ Pour activer l'intégration IA, vous devez configurer :
 - Exemples d'utilisation
 - Dépannage
 
-### Démarrage Rapide IA
+### Architecture IA
+
+```
+Frontend (React) → Backend (.NET) → Azure OpenAI (GPT-4)
+                         ↓
+                   MCP Server (Node.js) → Azure DevOps REST API
+```
+
+### Installation et Configuration
+
+#### 1. Installation automatique
+
+Le script `install.bat` installe automatiquement le MCP Server :
 
 ```bash
-# 1. Configurer Azure OpenAI dans appsettings.json
-# 2. Configurer Azure DevOps dans mcp-server/.env
-# 3. Installer le MCP Server
-cd mcp-server
-npm install
+install.bat
+```
 
-# 4. Démarrer le MCP Server
-npm start
+#### 2. Configuration Azure DevOps
 
-# 5. Démarrer l'application normalement
-cd ..
+Éditez `mcp-server\.env` (créé automatiquement) :
+
+```env
+AZURE_DEVOPS_ORG_URL=https://dev.azure.com/votre-organisation
+AZURE_DEVOPS_PAT=votre-personal-access-token
+AZURE_DEVOPS_PROJECT=votre-projet
+```
+
+**Comment obtenir un PAT :**
+1. Allez sur Azure DevOps → Profil → Personal Access Tokens
+2. Créez un nouveau token avec les permissions :
+   - Work Items: Read
+   - Build: Read
+   - Test Management: Read
+
+#### 3. Configuration Azure OpenAI
+
+Éditez `backend\src\CRMEPReport.API\appsettings.json` :
+
+```json
+{
+  "OpenAI": {
+    "Endpoint": "https://votre-ressource.openai.azure.com/",
+    "ApiKey": "votre-cle-api",
+    "DeploymentName": "gpt-4",
+    "MaxTokens": 4000,
+    "Temperature": 0.7
+  }
+}
+```
+
+#### 4. Démarrage
+
+```bash
 start.bat
 ```
+
+Cela démarre automatiquement :
+- MCP Server (port 3001)
+- Backend API (port 5154)
+- Frontend (port 3000)
+
+### Vérification
+
+- **MCP Health :** http://localhost:3001/health
+- **MCP Tools :** http://localhost:3001/api/mcp/tools
+- **Backend AI :** http://localhost:5154/swagger (section "AI")
+- **Frontend :** http://localhost:3000
 
 ---
 
@@ -314,7 +390,7 @@ start.bat
 - text-style, color
 - placeholder, code-block-lowlight
 
-### Backend (4 packages)
+### Backend (7 packages)
 
 | Package | Version | Description |
 |---------|---------|-------------|
@@ -322,6 +398,19 @@ start.bat
 | SQL Server Provider | 8.0.11 | Base de données |
 | EF Core Tools | 8.0.11 | Outils CLI |
 | Swashbuckle | 6.4.0 | Swagger/OpenAPI |
+| Azure.AI.OpenAI | 2.1.0 | Client Azure OpenAI |
+| Microsoft.Extensions.Http | 8.0.1 | Client HTTP |
+| System.Text.Json | 8.0.5 | Sérialisation JSON |
+
+### MCP Server (5 packages)
+
+| Package | Version | Description |
+|---------|---------|-------------|
+| express | 4.21.2 | Serveur web |
+| azure-devops-node-api | 14.1.0 | Client Azure DevOps |
+| @modelcontextprotocol/sdk | 1.0.4 | Protocol MCP |
+| cors | 2.8.5 | CORS middleware |
+| dotenv | 16.4.7 | Variables d'environnement |
 
 ---
 
