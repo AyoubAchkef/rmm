@@ -10,6 +10,9 @@ taskkill /FI "WindowTitle eq RMM MCP Azure DevOps*" /T /F >nul 2>&1
 echo [INFO] Arret du MCP SharePoint...
 taskkill /FI "WindowTitle eq RMM MCP SharePoint*" /T /F >nul 2>&1
 
+echo [INFO] Arret du MCP Playwright...
+taskkill /FI "WindowTitle eq RMM MCP Playwright*" /T /F >nul 2>&1
+
 echo [INFO] Arret du backend (.NET)...
 taskkill /FI "WindowTitle eq RMM Backend*" /T /F >nul 2>&1
 

@@ -8,6 +8,7 @@ import { SIMPLE_ANIMATIONS } from './lottie-animations';
 import Image from 'next/image';
 import { useAzureDevOpsStatus } from '@/hooks/useAzureDevOpsStatus';
 import { useSharePointStatus } from '@/hooks/useSharePointStatus';
+import { usePlaywrightStatus } from '@/hooks/usePlaywrightStatus';
 
 interface Service {
   logo: string;
@@ -22,6 +23,7 @@ export function ConnectedServicesCard() {
   const { t } = useLanguage();
   const azureDevOpsStatus = useAzureDevOpsStatus();
   const sharePointStatus = useSharePointStatus();
+  const playwrightStatus = usePlaywrightStatus();
 
   const services: Service[] = [
     {
@@ -47,8 +49,12 @@ export function ConnectedServicesCard() {
     {
       logo: '/playwright_logo.png',
       nameKey: 'playwright',
-      status: 'online',
-      latency: 18,
+      status: playwrightStatus.isLoading 
+        ? 'loading' 
+        : playwrightStatus.isConnected 
+          ? 'online' 
+          : 'offline',
+      latency: playwrightStatus.latency ?? undefined,
     },
   ];
 

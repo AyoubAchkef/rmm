@@ -66,5 +66,14 @@ mcp-sharepoint-server/.env
 mcp-sharepoint-server/package-lock.json
 mcp-sharepoint-server/npm-debug.log*
 
+mcp-playwright-server/node_modules/
+mcp-playwright-server/.env
+mcp-playwright-server/package-lock.json
+mcp-playwright-server/npm-debug.log*
+mcp-playwright-server/test-results/
+mcp-playwright-server/screenshots/
+mcp-playwright-server/videos/
+mcp-playwright-server/playwright-report/
+
 # AI Configuration (sensitive)
 backend/src/CRMEPReport.API/appsettings.Development.json

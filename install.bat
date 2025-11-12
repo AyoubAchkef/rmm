@@ -110,7 +110,7 @@ echo.
 echo ✓ MCP Server installe
 
 echo.
-echo [5/6] Installation du MCP SharePoint Server...
+echo [5/7] Installation du MCP SharePoint Server...
 echo.
 if not exist "mcp-sharepoint-server" (
     echo [INFO] Le dossier mcp-sharepoint-server est introuvable. Creation...
@@ -147,7 +147,48 @@ echo.
 echo ✓ MCP SharePoint Server installe
 
 echo.
-echo [6/6] Restauration et compilation du Backend...
+echo [6/7] Installation du MCP Playwright Server...
+echo.
+if not exist "mcp-playwright-server" (
+    echo [INFO] Le dossier mcp-playwright-server est introuvable. Creation...
+    mkdir mcp-playwright-server
+)
+cd mcp-playwright-server
+if not exist package.json (
+    echo [ERREUR] Le fichier package.json du MCP Playwright Server est introuvable.
+    echo Verifiez que le dossier mcp-playwright-server contient le projet MCP.
+    cd ..
+    pause
+    exit /b 1
+)
+call npm install
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERREUR] Echec de l'installation du MCP Playwright Server (npm install)
+    cd ..
+    pause
+    exit /b 1
+)
+echo [INFO] Installation des navigateurs Playwright...
+call npx playwright install chromium
+if %errorlevel% neq 0 (
+    echo [ATTENTION] Echec de l'installation des navigateurs Playwright
+    echo Le serveur demarrera mais les tests pourraient echouer
+)
+if not exist .env (
+    if exist .env.example (
+        echo [INFO] Creation du fichier .env pour le MCP Playwright Server depuis .env.example
+        copy /Y .env.example .env >nul
+    ) else (
+        echo [ATTENTION] Le fichier .env.example est manquant dans mcp-playwright-server.
+    )
+)
+cd ..
+echo.
+echo ✓ MCP Playwright Server installe
+
+echo.
+echo [7/7] Restauration et compilation du Backend...
 echo.
 cd backend
 dotnet restore
@@ -182,6 +223,7 @@ echo Dependances installees:
 echo - Frontend: 635 packages (React 19, Next.js 15, etc.)
 echo - MCP Azure DevOps: dependances Node installees (voir mcp-server/.env)
 echo - MCP SharePoint: dependances Node installees (voir mcp-sharepoint-server/.env)
+echo - MCP Playwright: dependances Node + navigateurs installees
 echo - Backend: Entity Framework Core 8.0, Swagger, Azure OpenAI
 
 echo.
