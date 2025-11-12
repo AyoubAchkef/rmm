@@ -1,5 +1,6 @@
 using CRMEPReport.API.Data;
 using CRMEPReport.API.Services;
+using CRMEPReport.API.Services.AI;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -23,6 +24,20 @@ builder.Services.AddControllers();
 // Register application services
 // builder.Services.AddScoped<IReportService, ReportService>(); // Database-based service - DISABLED
 builder.Services.AddScoped<IFileSystemReportService, FileSystemReportService>(); // File-based service
+
+// Configure AI Services
+builder.Services.Configure<OpenAIOptions>(builder.Configuration.GetSection("OpenAI"));
+builder.Services.Configure<MCPOptions>(builder.Configuration.GetSection("MCP"));
+
+// Register AI services
+builder.Services.AddHttpClient<IMCPService, MCPService>()
+    .ConfigureHttpClient((sp, client) =>
+    {
+        var options = sp.GetRequiredService<Microsoft.Extensions.Options.IOptions<MCPOptions>>().Value;
+        client.Timeout = TimeSpan.FromSeconds(options.TimeoutSeconds);
+    });
+
+builder.Services.AddScoped<IAIService, OpenAIService>();
 
 // Configure CORS for frontend
 builder.Services.AddCors(options =>

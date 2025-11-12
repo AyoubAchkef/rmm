@@ -12,6 +12,7 @@ Application fullstack moderne pour la gestion des rapports de Compte Rendu de Mi
 - [Démarrage](#-démarrage)
 - [Utilisation](#-utilisation)
 - [Architecture](#-architecture)
+- [Intégration IA](#-intégration-ia)
 - [Dépendances](#-dépendances)
 - [Problèmes Courants](#-problèmes-courants)
 - [Configuration](#-configuration)
@@ -216,6 +217,73 @@ Rapports/
             ├── changelog.jsonl
             └── versions/
                 └── data_v{version}_{timestamp}.json
+```
+
+---
+
+## 🤖 Intégration IA
+
+### Vue d'Ensemble
+
+Le projet intègre **Azure OpenAI (GPT-4)** et **Azure DevOps** via **MCP (Model Context Protocol)** pour :
+
+- ✅ **Générer automatiquement des rapports CR MEP** à partir de données Azure DevOps
+- ✅ **Compléter des sections spécifiques** d'un rapport en cours
+- ✅ **Dialoguer avec un assistant IA** pour obtenir de l'aide
+- ✅ **Récupérer automatiquement les données** d'Azure DevOps (work items, tests, déploiements)
+
+### Exemples d'Utilisation
+
+**Génération complète :**
+```
+Utilisateur : "La MEP de la 12.0.8 est terminée, génère moi le CR MEP stp"
+→ L'IA génère un rapport complet avec toutes les sections remplies
+```
+
+**Complétion de section :**
+```
+Utilisateur : "Remplie moi la conclusion du rapport"
+→ L'IA complète la section conclusion avec le contexte du rapport
+```
+
+**Chat contextuel :**
+```
+Utilisateur : "Quels bugs ont été corrigés dans cette version ?"
+→ L'IA répond avec les informations d'Azure DevOps
+```
+
+### Configuration Requise
+
+Pour activer l'intégration IA, vous devez configurer :
+
+1. **Azure OpenAI** - Créer une ressource et déployer GPT-4
+2. **Azure DevOps PAT** - Créer un Personal Access Token
+3. **MCP Server** - Installer et démarrer le serveur Node.js
+
+### Documentation Complète
+
+📖 **Consultez [AI_INTEGRATION.md](AI_INTEGRATION.md) pour :**
+- Architecture détaillée
+- Configuration pas à pas
+- API Endpoints
+- Exemples d'utilisation
+- Dépannage
+
+### Démarrage Rapide IA
+
+```bash
+# 1. Configurer Azure OpenAI dans appsettings.json
+# 2. Configurer Azure DevOps dans mcp-server/.env
+# 3. Installer le MCP Server
+cd mcp-server
+npm install
+
+# 4. Démarrer le MCP Server
+npm start
+
+# 5. Démarrer l'application normalement
+cd ..
+start.bat
 ```
 
 ---

@@ -28,6 +28,15 @@ echo.
 echo Appuyez sur Ctrl+C dans cette fenetre pour arreter les deux serveurs
 echo.
 
+:: Demarrer le MCP Server (Azure DevOps) en arriere-plan
+if not exist "%~dp0mcp-server\.env" (
+echo [ERREUR] Le fichier mcp-server\.env est manquant. Renseignez-le avant de demarrer.
+echo   - c:\Dev\rmm\mcp-server\.env
+echo   - Variables: AZURE_DEVOPS_ORG_URL, AZURE_DEVOPS_PAT, AZURE_DEVOPS_PROJECT
+) else (
+start "RMM MCP" cmd /k "cd /d %~dp0mcp-server && npm start"
+)
+
 :: Demarrer le backend en arriere-plan avec dotnet sur la DLL (evite les problemes d'antivirus)
 start "RMM Backend" cmd /k "cd /d %~dp0backend\src\CRMEPReport.API && set ASPNETCORE_ENVIRONMENT=Development && set ASPNETCORE_URLS=http://localhost:5154 && dotnet bin\Debug\net8.0\CRMEPReport.API.dll"
 
@@ -42,12 +51,15 @@ echo ====================================
 echo Les serveurs sont en cours de demarrage...
 echo ====================================
 echo.
-echo Deux nouvelles fenetres se sont ouvertes :
+echo Trois fenetres se sont ouvertes :
+echo - RMM MCP (Azure DevOps)
 echo - RMM Backend (API .NET)
 echo - RMM Frontend (Next.js)
 echo.
-echo Une fois demarres, ouvrez votre navigateur sur :
-echo http://localhost:3000
+echo URLs utiles :
+echo - MCP Health:     http://localhost:3001/health
+echo - API Swagger:    http://localhost:5154/swagger
+echo - Frontend:       http://localhost:3000
 echo.
 echo Pour arreter les serveurs, fermez les fenetres Backend et Frontend
 echo ou utilisez stop.bat

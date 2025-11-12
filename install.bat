@@ -54,7 +54,7 @@ if exist "frontend\.next" (
 echo ✓ Nettoyage termine
 echo.
 
-echo [3/4] Installation des dependances Frontend...
+echo [3/5] Installation des dependances Frontend...
 echo.
 echo Installation en cours (2-5 minutes selon votre connexion)...
 cd frontend
@@ -71,7 +71,46 @@ echo.
 echo ✓ Dependances frontend installees (635 packages)
 echo.
 
-echo [4/4] Restauration et compilation du Backend...
+echo [4/5] Installation du MCP Server (Azure DevOps)...
+echo.
+if not exist "mcp-server" (
+    echo [INFO] Le dossier mcp-server est introuvable. Creation...
+    mkdir mcp-server
+)
+cd mcp-server
+if not exist package.json (
+    echo [ERREUR] Le fichier package.json du MCP Server est introuvable.
+    echo Verifiez que le dossier mcp-server contient le projet MCP.
+    cd ..
+    pause
+    exit /b 1
+)
+call npm install
+if %errorlevel% neq 0 (
+    echo.
+    echo [ERREUR] Echec de l'installation du MCP Server (npm install)
+    cd ..
+    pause
+    exit /b 1
+)
+if not exist .env (
+    if exist .env.example (
+        echo [INFO] Creation du fichier .env pour le MCP Server depuis .env.example
+        copy /Y .env.example .env >nul
+        echo [ATTENTION] Ouvrez c:\Dev\rmm\mcp-server\.env et renseignez:
+        echo   - AZURE_DEVOPS_ORG_URL (ex: https://dev.azure.com/votre-org)
+        echo   - AZURE_DEVOPS_PAT (Personal Access Token)
+        echo   - AZURE_DEVOPS_PROJECT (Nom du projet)
+    ) else (
+        echo [ATTENTION] Le fichier .env.example est manquant dans mcp-server. Creez mcp-server\.env manuellement.
+    )
+)
+cd ..
+echo.
+echo ✓ MCP Server installe
+
+echo.
+echo [5/5] Restauration et compilation du Backend...
 echo.
 cd backend
 dotnet restore
@@ -104,8 +143,16 @@ echo ====================================
 echo.
 echo Dependances installees:
 echo - Frontend: 635 packages (React 19, Next.js 15, etc.)
+echo - MCP Server: dependances Node installees (voir mcp-server/.env)
 echo - Backend: Entity Framework Core 8.0, Swagger
+
+echo.
+echo IMPORTANT:
+echo - Si c'est la premiere installation, renseignez le fichier c:\Dev\rmm\mcp-server\.env
+echo   (AZURE_DEVOPS_ORG_URL, AZURE_DEVOPS_PAT, AZURE_DEVOPS_PROJECT)
+
 echo.
 echo Pour demarrer l'application, executez: start.bat
+
 echo.
 pause

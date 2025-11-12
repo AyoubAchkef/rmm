@@ -54,3 +54,12 @@ yarn-error.log*
 
 # Scripts PIDs
 .rmm_pids
+
+# MCP Server
+mcp-server/node_modules/
+mcp-server/.env
+mcp-server/package-lock.json
+mcp-server/npm-debug.log*
+
+# AI Configuration (sensitive)
+backend/src/CRMEPReport.API/appsettings.Development.json
