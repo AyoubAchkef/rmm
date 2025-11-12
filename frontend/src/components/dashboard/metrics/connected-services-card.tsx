@@ -6,11 +6,12 @@ import { useLanguage } from '@/contexts/language-context';
 import { LottieIcon } from './lottie-icon';
 import { SIMPLE_ANIMATIONS } from './lottie-animations';
 import Image from 'next/image';
+import { useAzureDevOpsStatus } from '@/hooks/useAzureDevOpsStatus';
 
 interface Service {
   logo: string;
   nameKey: string;
-  status: 'online' | 'offline';
+  status: 'online' | 'offline' | 'loading';
   latency?: number;
   lastSync?: string;
 }
@@ -18,13 +19,18 @@ interface Service {
 export function ConnectedServicesCard() {
   const { theme } = useTheme();
   const { t } = useLanguage();
+  const azureDevOpsStatus = useAzureDevOpsStatus();
 
   const services: Service[] = [
     {
       logo: '/azuredevops_logo.png',
       nameKey: 'azureDevOps',
-      status: 'online',
-      latency: 42,
+      status: azureDevOpsStatus.isLoading 
+        ? 'loading' 
+        : azureDevOpsStatus.isConnected 
+          ? 'online' 
+          : 'offline',
+      latency: azureDevOpsStatus.latency ?? undefined,
     },
     {
       logo: '/sharepoint_logo.png',
@@ -82,7 +88,16 @@ export function ConnectedServicesCard() {
             >
               {/* Status Indicator */}
               <div className="absolute top-2 right-2">
-                {isOnline ? (
+                {service.status === 'loading' ? (
+                  <div className="relative flex items-center justify-center">
+                    <div
+                      className="w-2 h-2 rounded-full animate-pulse"
+                      style={{
+                        background: theme === 'dark' ? '#CC9F53' : '#1C355E',
+                      }}
+                    />
+                  </div>
+                ) : isOnline ? (
                   <div className="relative flex items-center justify-center">
                     <div
                       className="absolute w-2.5 h-2.5 rounded-full animate-ping"
@@ -120,18 +135,34 @@ export function ConnectedServicesCard() {
               </div>
 
               {/* Latency/Sync Info */}
-              <div
-                className="text-[8px] font-medium px-1.5 py-0.5 rounded-full"
-                style={{
-                  background:
-                    theme === 'dark'
-                      ? 'rgba(204, 159, 83, 0.15)'
-                      : 'rgba(28, 53, 94, 0.1)',
-                  color: theme === 'dark' ? '#CC9F53' : '#FFFFFF',
-                }}
-              >
-                {service.latency ? `${service.latency}ms` : service.lastSync}
-              </div>
+              {service.status !== 'loading' && (
+                <div
+                  className="text-[8px] font-medium px-1.5 py-0.5 rounded-full"
+                  style={{
+                    background:
+                      theme === 'dark'
+                        ? 'rgba(204, 159, 83, 0.15)'
+                        : 'rgba(28, 53, 94, 0.1)',
+                    color: theme === 'dark' ? '#CC9F53' : '#FFFFFF',
+                  }}
+                >
+                  {service.latency ? `${service.latency}ms` : service.lastSync}
+                </div>
+              )}
+              {service.status === 'loading' && (
+                <div
+                  className="text-[8px] font-medium px-1.5 py-0.5 rounded-full"
+                  style={{
+                    background:
+                      theme === 'dark'
+                        ? 'rgba(204, 159, 83, 0.15)'
+                        : 'rgba(28, 53, 94, 0.1)',
+                    color: theme === 'dark' ? '#CC9F53' : '#FFFFFF',
+                  }}
+                >
+                  ...
+                </div>
+              )}
             </div>
           );
         })}

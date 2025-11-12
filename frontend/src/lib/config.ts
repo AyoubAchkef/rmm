@@ -10,6 +10,12 @@ export const config = {
     endpoints: {
       reports: '/api/reports',
       health: '/health',
+      ai: {
+        mcpHealth: '/api/ai/mcp/health',
+        generateReport: '/api/ai/generate-report',
+        completeSection: '/api/ai/complete-section',
+        chat: '/api/ai/chat',
+      },
     },
   },
   app: {
