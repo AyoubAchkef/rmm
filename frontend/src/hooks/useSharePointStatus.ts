@@ -9,7 +9,6 @@ interface SharePointStatus {
   latency: number | null;
   isLoading: boolean;
   error: string | null;
-  isMockMode: boolean;
 }
 
 export function useSharePointStatus() {
@@ -18,7 +17,6 @@ export function useSharePointStatus() {
     latency: null,
     isLoading: true,
     error: null,
-    isMockMode: false,
   });
 
   useEffect(() => {
@@ -49,7 +47,6 @@ export function useSharePointStatus() {
             latency,
             isLoading: false,
             error: null,
-            isMockMode: data.mode === 'MOCK',
           });
         } else {
           setStatus({
@@ -57,7 +54,6 @@ export function useSharePointStatus() {
             latency: null,
             isLoading: false,
             error: 'MCP SharePoint Server unavailable',
-            isMockMode: false,
           });
         }
       } catch (error) {
@@ -68,7 +64,6 @@ export function useSharePointStatus() {
           latency: null,
           isLoading: false,
           error: error instanceof Error ? error.message : 'Connection failed',
-          isMockMode: false,
         });
       }
     };

@@ -15,7 +15,6 @@ interface Service {
   status: 'online' | 'offline' | 'loading';
   latency?: number;
   lastSync?: string;
-  isMockMode?: boolean;
 }
 
 export function ConnectedServicesCard() {
@@ -44,7 +43,6 @@ export function ConnectedServicesCard() {
           ? 'online' 
           : 'offline',
       latency: sharePointStatus.latency ?? undefined,
-      isMockMode: sharePointStatus.isMockMode,
     },
     {
       logo: '/playwright_logo.png',
@@ -154,7 +152,7 @@ export function ConnectedServicesCard() {
                     color: theme === 'dark' ? '#CC9F53' : '#FFFFFF',
                   }}
                 >
-                  {service.isMockMode ? 'MOCK' : service.latency ? `${service.latency}ms` : service.lastSync}
+                  {service.latency ? `${service.latency}ms` : service.lastSync}
                 </div>
               )}
               {service.status === 'loading' && (

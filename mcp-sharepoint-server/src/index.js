@@ -19,7 +19,6 @@ dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3002;
-const USE_MOCK_DATA = process.env.USE_MOCK_DATA === 'true';
 
 // Middleware
 app.use(cors());
@@ -30,8 +29,7 @@ const sharePointService = new SharePointService({
   tenantId: process.env.AZURE_TENANT_ID,
   clientId: process.env.AZURE_CLIENT_ID,
   clientSecret: process.env.AZURE_CLIENT_SECRET,
-  siteUrl: process.env.SHAREPOINT_SITE_URL,
-  useMockData: USE_MOCK_DATA
+  siteUrl: process.env.SHAREPOINT_SITE_URL
 });
 
 // ============================================
@@ -49,7 +47,6 @@ app.get('/health', async (req, res) => {
       service: 'RMM MCP SharePoint Server',
       version: '1.0.0',
       timestamp: new Date().toISOString(),
-      mode: USE_MOCK_DATA ? 'MOCK' : 'PRODUCTION',
       siteUrl: process.env.SHAREPOINT_SITE_URL
     });
   } catch (error) {
@@ -205,19 +202,15 @@ app.get('/api/mcp/tools', (req, res) => {
 // ============================================
 
 app.listen(PORT, () => {
-  const modeColor = USE_MOCK_DATA ? '\x1b[33m' : '\x1b[32m'; // Yellow for MOCK, Green for PROD
-  const resetColor = '\x1b[0m';
-  
   console.log(`
-╔══════════════════��════════════════════════════════════════╗
+╔═══════════════════════════════════════════════════════════╗
 ║                                                           ║
 ║     RMM MCP SharePoint Server - Graph API Bridge         ║
 ║                                                           ║
 ╠═══════════════════════════════════════════════════════════╣
 ║                                                           ║
-║  Status: ${modeColor}Running${resetColor}                                          ║
+║  Status: Running                                          ║
 ║  Port: ${PORT}                                              ║
-║  Mode: ${modeColor}${USE_MOCK_DATA ? 'MOCK DATA' : 'PRODUCTION'}${resetColor}                                    ║
 ║  Environment: ${process.env.NODE_ENV || 'development'}                                  ║
 ║                                                           ║
 ║  Endpoints:                                               ║
@@ -232,29 +225,8 @@ app.listen(PORT, () => {
 ║  SharePoint Site:                                         ║
 ║  ${process.env.SHAREPOINT_SITE_URL?.substring(0, 55) || 'Not configured'}     ║
 ║                                                           ║
-${USE_MOCK_DATA ? '║  ⚠️  MOCK MODE: Using fake data for development       ║' : '║  ✓  PRODUCTION MODE: Connected to Microsoft Graph     ║'}
-║                                                           ║
 ╚═══════════════════════════════════════════════════════════╝
   `);
-  
-  if (USE_MOCK_DATA) {
-    console.log(`
-${modeColor}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${resetColor}
-${modeColor}  MODE DÉVELOPPEMENT ACTIVÉ${resetColor}
-  
-  Le serveur utilise des données fictives (mock).
-  
-  Pour basculer en mode production:
-  1. Obtenez les credentials Azure AD auprès de votre admin
-  2. Éditez le fichier .env:
-     - AZURE_TENANT_ID=votre-tenant-id
-     - AZURE_CLIENT_ID=votre-client-id
-     - AZURE_CLIENT_SECRET=votre-secret
-     - USE_MOCK_DATA=false
-  3. Redémarrez le serveur
-${modeColor}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━${resetColor}
-  `);
-  }
 });
 
 // Graceful shutdown

@@ -136,17 +136,15 @@ if not exist .env (
     if exist .env.example (
         echo [INFO] Creation du fichier .env pour le MCP SharePoint Server depuis .env.example
         copy /Y .env.example .env >nul
-        echo [ATTENTION] Le MCP SharePoint est en mode MOCK (donnees fictives)
-        echo Pour activer le mode production, editez mcp-sharepoint-server\.env:
+        echo [ATTENTION] Renseignez mcp-sharepoint-server\.env avec les credentials Azure AD:
         echo   - AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET
-        echo   - USE_MOCK_DATA=false
     ) else (
         echo [ATTENTION] Le fichier .env.example est manquant dans mcp-sharepoint-server.
     )
 )
 cd ..
 echo.
-echo ✓ MCP SharePoint Server installe (mode MOCK actif)
+echo ✓ MCP SharePoint Server installe
 
 echo.
 echo [6/6] Restauration et compilation du Backend...
@@ -183,7 +181,7 @@ echo.
 echo Dependances installees:
 echo - Frontend: 635 packages (React 19, Next.js 15, etc.)
 echo - MCP Azure DevOps: dependances Node installees (voir mcp-server/.env)
-echo - MCP SharePoint: dependances Node installees (MODE MOCK actif)
+echo - MCP SharePoint: dependances Node installees (voir mcp-sharepoint-server/.env)
 echo - Backend: Entity Framework Core 8.0, Swagger, Azure OpenAI
 
 echo.
@@ -191,11 +189,9 @@ echo IMPORTANT:
 echo - MCP Azure DevOps: Renseignez mcp-server\.env
 echo   (AZURE_DEVOPS_ORG_URL, AZURE_DEVOPS_PAT, AZURE_DEVOPS_PROJECT)
 echo.
-echo - MCP SharePoint: En mode MOCK par defaut (donnees fictives)
-echo   Pour activer le mode production, editez mcp-sharepoint-server\.env:
-echo   - Obtenez les credentials Azure AD aupres de votre admin
+echo - MCP SharePoint: Renseignez mcp-sharepoint-server\.env
+echo   Obtenez les credentials Azure AD aupres de votre admin:
 echo   - AZURE_TENANT_ID, AZURE_CLIENT_ID, AZURE_CLIENT_SECRET
-echo   - USE_MOCK_DATA=false
 
 echo.
 echo Pour demarrer l'application, executez: start.bat
