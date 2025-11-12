@@ -14,7 +14,6 @@ interface QuickAction {
   icon: React.ElementType;
   labelKey: string;
   action: () => void;
-  count: number;
 }
 
 export function QuickActionsCard() {
@@ -87,25 +86,21 @@ export function QuickActionsCard() {
       icon: FileText,
       labelKey: 'createUS',
       action: () => {}, // TODO: Implement create US functionality
-      count: 24,
     },
     {
       icon: FlaskConical,
       labelKey: 'generateTests',
       action: () => {}, // TODO: Implement generate tests functionality
-      count: 18,
     },
     {
       icon: Plus,
       labelKey: 'generateDocument',
       action: handleDocumentMenuToggle,
-      count: 12,
     },
     {
       icon: BarChart3,
       labelKey: 'analyzeSprint',
       action: () => {}, // TODO: Implement analyze sprint functionality
-      count: 31,
     },
   ];
 
@@ -182,7 +177,6 @@ export function QuickActionsCard() {
               <div className="relative flex flex-col items-center gap-2">
                 {/* Icon */}
                 <div
-                  className="relative"
                   style={{
                     color: 'rgba(255, 255, 255, 0.8)',
                   }}
@@ -193,18 +187,6 @@ export function QuickActionsCard() {
                       transform: isHovered ? 'scale(1.1)' : 'scale(1)',
                     }}
                   />
-
-                  {/* Usage Count Badge */}
-                  <div
-                    className="absolute -top-1.5 -right-1.5 w-4 h-4 rounded-full flex items-center justify-center text-[9px] font-bold transition-all duration-300"
-                    style={{
-                      background: theme === 'dark' ? '#CC9F53' : '#1C355E',
-                      color: theme === 'dark' ? '#1C355E' : '#FFFFFF',
-                      transform: isHovered ? 'scale(1.2)' : 'scale(1)',
-                    }}
-                  >
-                    {action.count}
-                  </div>
                 </div>
 
                 {/* Label */}
