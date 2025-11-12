@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 
 type Theme = 'light' | 'dark';
 
@@ -28,21 +28,27 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const setTheme = (newTheme: Theme) => {
+  const setTheme = useCallback((newTheme: Theme) => {
     if (!mounted) return;
     setThemeState(newTheme);
     localStorage.setItem('theme', newTheme);
     document.documentElement.setAttribute('data-theme', newTheme);
-  };
+  }, [mounted]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     if (!mounted) return;
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
-  };
+  }, [mounted, theme, setTheme]);
+
+  // Memoize context value to prevent unnecessary re-renders
+  const value = useMemo(
+    () => ({ theme, setTheme, toggleTheme }),
+    [theme, setTheme, toggleTheme]
+  );
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, toggleTheme }}>
+    <ThemeContext.Provider value={value}>
       {children}
     </ThemeContext.Provider>
   );

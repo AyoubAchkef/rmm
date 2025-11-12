@@ -1,6 +1,6 @@
 'use client';
 
-import { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, useContext, useState, useEffect, ReactNode, useMemo, useCallback } from 'react';
 
 type Language = 'fr' | 'en';
 
@@ -29,10 +29,10 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     loadMessages();
   }, [language]);
 
-  const setLanguage = (lang: Language) => {
+  const setLanguage = useCallback((lang: Language) => {
     setLanguageState(lang);
     localStorage.setItem('language', lang);
-  };
+  }, []);
 
   useEffect(() => {
     // Load saved language from localStorage
@@ -42,7 +42,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, []);
 
-  const t = (key: string, params?: Record<string, string>): string => {
+  const t = useCallback((key: string, params?: Record<string, string>): string => {
     const keys = key.split('.');
     let value: any = messages;
 
@@ -63,10 +63,16 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
 
     return typeof value === 'string' ? value : key;
-  };
+  }, [messages]);
+
+  // Memoize context value to prevent unnecessary re-renders
+  const value = useMemo(
+    () => ({ language, setLanguage, t }),
+    [language, setLanguage, t]
+  );
 
   return (
-    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+    <LanguageContext.Provider value={value}>
       {children}
     </LanguageContext.Provider>
   );

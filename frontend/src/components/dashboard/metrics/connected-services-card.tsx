@@ -6,9 +6,7 @@ import { useLanguage } from '@/contexts/language-context';
 import { LottieIcon } from './lottie-icon';
 import { SIMPLE_ANIMATIONS } from './lottie-animations';
 import Image from 'next/image';
-import { useAzureDevOpsStatus } from '@/hooks/useAzureDevOpsStatus';
-import { useSharePointStatus } from '@/hooks/useSharePointStatus';
-import { usePlaywrightStatus } from '@/hooks/usePlaywrightStatus';
+import { useServicesStatus } from '@/hooks/useServicesStatus';
 
 interface Service {
   logo: string;
@@ -21,40 +19,38 @@ interface Service {
 export function ConnectedServicesCard() {
   const { theme } = useTheme();
   const { t } = useLanguage();
-  const azureDevOpsStatus = useAzureDevOpsStatus();
-  const sharePointStatus = useSharePointStatus();
-  const playwrightStatus = usePlaywrightStatus();
+  const servicesStatus = useServicesStatus();
 
   const services: Service[] = [
     {
       logo: '/azuredevops_logo.png',
       nameKey: 'azureDevOps',
-      status: azureDevOpsStatus.isLoading 
+      status: servicesStatus.azureDevOps.isLoading 
         ? 'loading' 
-        : azureDevOpsStatus.isConnected 
+        : servicesStatus.azureDevOps.isConnected 
           ? 'online' 
           : 'offline',
-      latency: azureDevOpsStatus.latency ?? undefined,
+      latency: servicesStatus.azureDevOps.latency ?? undefined,
     },
     {
       logo: '/sharepoint_logo.png',
       nameKey: 'sharePoint',
-      status: sharePointStatus.isLoading 
+      status: servicesStatus.sharePoint.isLoading 
         ? 'loading' 
-        : sharePointStatus.isConnected 
+        : servicesStatus.sharePoint.isConnected 
           ? 'online' 
           : 'offline',
-      latency: sharePointStatus.latency ?? undefined,
+      latency: servicesStatus.sharePoint.latency ?? undefined,
     },
     {
       logo: '/playwright_logo.png',
       nameKey: 'playwright',
-      status: playwrightStatus.isLoading 
+      status: servicesStatus.playwright.isLoading 
         ? 'loading' 
-        : playwrightStatus.isConnected 
+        : servicesStatus.playwright.isConnected 
           ? 'online' 
           : 'offline',
-      latency: playwrightStatus.latency ?? undefined,
+      latency: servicesStatus.playwright.latency ?? undefined,
     },
   ];
 

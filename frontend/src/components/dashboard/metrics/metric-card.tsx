@@ -1,6 +1,6 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { ReactNode, memo } from 'react';
 import { useTheme } from '@/contexts/theme-context';
 
 interface MetricCardProps {
@@ -10,7 +10,12 @@ interface MetricCardProps {
   hoverable?: boolean;
 }
 
-export function MetricCard({ children, className = '', onClick, hoverable = false }: MetricCardProps) {
+export const MetricCard = memo(function MetricCard({ 
+  children, 
+  className = '', 
+  onClick, 
+  hoverable = false 
+}: MetricCardProps) {
   const { theme } = useTheme();
 
   return (
@@ -47,4 +52,4 @@ export function MetricCard({ children, className = '', onClick, hoverable = fals
       {children}
     </div>
   );
-}
+});

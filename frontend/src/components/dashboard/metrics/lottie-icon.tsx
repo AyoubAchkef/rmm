@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState, memo } from 'react';
 import Lottie, { LottieRefCurrentProps } from 'lottie-react';
 
 interface LottieIconProps {
@@ -9,7 +9,11 @@ interface LottieIconProps {
   onHover?: boolean;
 }
 
-export function LottieIcon({ animationData, className = '', onHover = true }: LottieIconProps) {
+export const LottieIcon = memo(function LottieIcon({ 
+  animationData, 
+  className = '', 
+  onHover = true 
+}: LottieIconProps) {
   const lottieRef = useRef<LottieRefCurrentProps>(null);
   const [isHovered, setIsHovered] = useState(false);
 
@@ -39,7 +43,12 @@ export function LottieIcon({ animationData, className = '', onHover = true }: Lo
         animationData={animationData}
         loop={false}
         autoplay={false}
+        rendererSettings={{
+          preserveAspectRatio: 'xMidYMid slice',
+          progressiveLoad: true,
+          clearCanvas: true,
+        }}
       />
     </div>
   );
-}
+});
