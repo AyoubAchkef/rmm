@@ -56,10 +56,10 @@ yarn-error.log*
 .rmm_pids
 
 # MCP Servers
-mcp-server/node_modules/
-mcp-server/.env
-mcp-server/package-lock.json
-mcp-server/npm-debug.log*
+mcp-azuredevops-server/node_modules/
+mcp-azuredevops-server/.env
+mcp-azuredevops-server/package-lock.json
+mcp-azuredevops-server/npm-debug.log*
 
 mcp-sharepoint-server/node_modules/
 mcp-sharepoint-server/.env

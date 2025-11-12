@@ -29,12 +29,12 @@ echo Appuyez sur Ctrl+C dans cette fenetre pour arreter les deux serveurs
 echo.
 
 :: Demarrer le MCP Server (Azure DevOps) en arriere-plan
-if not exist "%~dp0mcp-server\.env" (
-echo [ERREUR] Le fichier mcp-server\.env est manquant. Renseignez-le avant de demarrer.
-echo   - c:\Dev\rmm\mcp-server\.env
+if not exist "%~dp0mcp-azuredevops-server\.env" (
+echo [ERREUR] Le fichier mcp-azuredevops-server\.env est manquant. Renseignez-le avant de demarrer.
+echo   - c:\Dev\rmm\mcp-azuredevops-server\.env
 echo   - Variables: AZURE_DEVOPS_ORG_URL, AZURE_DEVOPS_PAT, AZURE_DEVOPS_PROJECT
 ) else (
-start "RMM MCP Azure DevOps" cmd /k "cd /d %~dp0mcp-server && npm start"
+start "RMM MCP Azure DevOps" cmd /k "cd /d %~dp0mcp-azuredevops-server && npm start"
 )
 
 :: Demarrer le MCP SharePoint Server en arriere-plan

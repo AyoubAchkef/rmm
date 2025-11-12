@@ -88,11 +88,11 @@ echo.
 echo [4/7] Installation MCP Azure DevOps Server...
 echo.
 
-if not exist "mcp-server" mkdir mcp-server
-cd mcp-server
+if not exist "mcp-azuredevops-server" mkdir mcp-azuredevops-server
+cd mcp-azuredevops-server
 
 if not exist package.json (
-    echo   [ERREUR] package.json manquant dans mcp-server
+    echo   [ERREUR] package.json manquant dans mcp-azuredevops-server
     cd ..
     pause
     exit /b 1
@@ -245,7 +245,7 @@ echo ------------------------------------------------------------
 echo CONFIGURATION REQUISE :
 echo ------------------------------------------------------------
 echo.
-echo 1. MCP Azure DevOps : mcp-server\.env
+echo 1. MCP Azure DevOps : mcp-azuredevops-server\.env
 echo    - AZURE_DEVOPS_ORG_URL
 echo    - AZURE_DEVOPS_PAT
 echo    - AZURE_DEVOPS_PROJECT
