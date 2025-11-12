@@ -1,10 +1,20 @@
 'use client';
 
-import Silk from '@/components/ui/silk';
+import dynamic from 'next/dynamic';
 import { ModernLogin } from '@/components/modern-login';
 import { useTheme } from '@/contexts/theme-context';
 import { useLanguage } from '@/contexts/language-context';
 import { ThemeToggleButton } from '@/components/ui/theme-toggle-button';
+
+// Charger Silk dynamiquement UNIQUEMENT côté client
+const Silk = dynamic(() => import('@/components/ui/silk'), {
+  ssr: false,
+  loading: () => (
+    <div className="absolute inset-0 bg-gradient-to-br from-[#1C355E] via-[#0a0a0a] to-[#1C355E]">
+      <div className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_50%_50%,rgba(204,159,83,0.1),transparent_50%)]"></div>
+    </div>
+  ),
+});
 
 export default function LoginPage() {
   const { theme, toggleTheme } = useTheme();

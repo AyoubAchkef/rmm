@@ -48,10 +48,9 @@ yarn-error.log*
 .env.test.local
 .env.production.local
 
-# Root node_modules
-node_modules/
-package-lock.json
-package.json
+# Root node_modules (si présent)
+/node_modules/
+/package-lock.json
 
 # Scripts PIDs
 .rmm_pids
