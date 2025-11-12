@@ -185,7 +185,7 @@ export function QuickActionsCard() {
                     className="w-5 h-5 transition-transform duration-300"
                     style={{
                       transform: isHovered ? 'scale(1.1)' : 'scale(1)',
-                    }}
+                    } as React.CSSProperties}
                   />
                 </div>
 
